@@ -3,7 +3,7 @@ import './analytics.css';
 
 const Analytics = () => {
   return (
-    <div>Analytics</div>
+    <div className='AnalyticsContainer'>Analytics</div>
   )
 }
 

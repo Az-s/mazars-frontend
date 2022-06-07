@@ -1,0 +1,32 @@
+.navbar {
+    width: 100%;
+}
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 15px 0px;
+}
+
+.navImg {
+  height: 23px;
+  width: 150px;
+  left: 111px;
+  top: 64px;
+  border-radius: 0px;
+}
+
+.navItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navItems  > a{
+  font-size: 18px;
+  padding: 0 10px;
+  text-decoration: none;
+  cursor: pointer;
+  list-style-type: none;
+  color: #000;
+}

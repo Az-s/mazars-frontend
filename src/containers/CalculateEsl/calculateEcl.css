@@ -1,0 +1,8 @@
+.calculateEclContainer {
+    display: flex;
+    /* align-items: center; */
+    padding-top: 150px;
+    justify-content: center;
+    background-color: #F4F6F8;
+    height: 100vh;
+}
