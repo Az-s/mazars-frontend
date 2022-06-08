@@ -1,91 +1,61 @@
 import * as React from "react";
-import { Typography, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Zoom from "@mui/material/Zoom";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Link } from "react-router-dom";
-import Popover from "@mui/material/Popover";
-import "./PopoverLinks.css";
 
-const PopoverLinks = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: "rgba(0, 0, 0, 0.87)",
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}));
 
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+const Links = [
+  'Потребительский портфель',
+  'Корпоротивный портфель',
+  'Корреспондентские счета',
+  'Депозиты',
+  'Ценные бумаги',
+  'Прочие активы',
+  'Аккредетивы',
+  'Гарантии',
+  'Забалансовые обязательства',
+];
 
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
-  const Links = [
-    {
-      text: "Потребительский портфель",
-    },
-    {
-      text: "Корпоротивный портфель",
-    },
-    {
-      text: "Корреспондентские счета",
-    },
-    {
-      text: "Депозиты",
-    },
-    {
-      text: "Ценные бумаги",
-    },
-    {
-      text: "Прочие активы",
-    },
-    {
-      text: "Аккредетивы",
-    },
-    {
-      text: "Гарантии",
-    },
-    {
-      text: "Забалансовые обязательства",
-    },
-  ];
-
+export default function PopoverLinks() {
   return (
-    <div>
-      <Typography
-        aria-owns={open ? "mouse-over-popover" : undefined}
-        aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        Calculate ECL
-      </Typography>
-      <Popover
-        id="mouse-over-popover"
-        sx={{
-          pointerEvents: "none",
-        }}
-        open={open}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-      >
-        <Button disabled sx={{ p: 1 }}>
-          Выбор актива для расчета
-        </Button>
-        {Links.map((link, i) => (
-          <Typography sx={{ p: 1 }} key={i} className="popoverLinks">
-            {link.text}
-          </Typography>
-        ))}
-      </Popover>
-    </div>
+    <Grid container justifyContent="center">
+      <Grid item>
+        <LightTooltip
+          title={
+            <>
+              <Typography color="inherit" disabled sx={{display: 'flex' , justifyContent: 'center', fontWeight: '500'}}>
+                Входные данные:
+              </Typography>
+              <List>
+                {Links.map((link) => (
+                  <ListItem disablePadding key={link}>
+                    <ListItemButton component={Link} to='/calculate-ecl'>
+                      <ListItemText primary={link} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </>
+          }
+          TransitionComponent={Zoom}
+        >
+          <Grid item>Calculate ECL</Grid>
+        </LightTooltip>
+      </Grid>
+    </Grid>
   );
-};
-
-export default PopoverLinks;
+}

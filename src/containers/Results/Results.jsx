@@ -1,13 +1,16 @@
-import React from 'react';
-import Navigation from '../../components/Navigation/Navigation';
-import './results.css';
+import { Grid } from "@mui/material";
 
 const Results = () => {
   return (
-    <div>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       Results
-    </div>
-  )
-}
+    </Grid>
+  );
+};
 
 export default Results;

@@ -1,7 +1,10 @@
 .navbar {
-    width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(34, 60, 80, 0.2);
 }
 .navContainer {
+  width: 100%;
+  /* width: 1024px; */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -13,7 +16,6 @@
   width: 150px;
   left: 111px;
   top: 64px;
-  border-radius: 0px;
 }
 
 .navItems {

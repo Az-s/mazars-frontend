@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import DefaultLvl from "./DefaultLvl/DefaultLvl";
 import CurrencyField from "./CurrencyField/CurrencyField";
-import Selects from './Selects/Selects';
+import Selects from "./Selects/Selects";
 
 const SettingsList = () => {
   const [expanded, setExpanded] = React.useState(false);
@@ -32,7 +32,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography><input type="date"/></Typography>
+          <input type="date" />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -49,9 +49,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <Selects />
-          </Typography>
+          <Selects />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -68,9 +66,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography sx={{ display: 'flex' , justifyContent: 'center'}}>
-            <CurrencyField />
-          </Typography>
+          <CurrencyField />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -87,9 +83,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <DefaultLvl />
-          </Typography>
+          <DefaultLvl />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -106,9 +100,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <DefaultLvl />
-          </Typography>
+          <DefaultLvl />
         </AccordionDetails>
       </Accordion>
     </Grid>

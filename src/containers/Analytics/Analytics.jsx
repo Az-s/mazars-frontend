@@ -1,10 +1,16 @@
-import React from 'react';
-import './analytics.css';
+import { Grid } from "@mui/material";
 
 const Analytics = () => {
   return (
-    <div className='AnalyticsContainer'>Analytics</div>
-  )
-}
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      Analytics
+    </Grid>
+  );
+};
 
 export default Analytics;
