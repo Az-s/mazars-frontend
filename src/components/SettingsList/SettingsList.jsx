@@ -32,7 +32,7 @@ const SettingsList = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <input type="date" />
+          <input type="date" style={{colorScheme: 'white'}}/>
         </AccordionDetails>
       </Accordion>
       <Accordion
