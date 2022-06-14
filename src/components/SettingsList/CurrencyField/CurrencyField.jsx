@@ -1,14 +1,40 @@
-import * as React from "react";
+import {useState, useEffect} from "react";
 import { Box, Grid } from "@mui/material";
+import axios from "axios";
 import TextField from "@mui/material/TextField";
 
 export default function CurrencyField() {
-  const [value, setValue] = React.useState("Controlled");
+  // const [value, setValue] = React.useState("Controlled");
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // };
+
+  // const getCurrency = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     let respone = await axios.get("https://www.nbkr.kg/XML/daily.xml");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  const [currency, setCurrency] = useState([])
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      const response = await axios.get('https://www.nbkr.kg/XML/daily.xml');
+      const currency = Object.keys(response.data).map(id => ({
+          ...response.data[id],
+          id,
+      }))
+      setCurrency(currency);
   };
 
+  fetchCurrency().catch(console.error);
+  }, []);
+
+  console.log(currency)
+  
   return (
     <Box
       component="form"

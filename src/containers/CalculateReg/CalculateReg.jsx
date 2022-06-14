@@ -3,6 +3,7 @@ import RegressionSelects from "../../components/RegressionSelects/RegressionSele
 
 const CalculateReg = () => {
   return (
+
     <Grid
       container
       direction="column"
