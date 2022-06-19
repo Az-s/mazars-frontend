@@ -1,11 +1,11 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -13,13 +13,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../../assets/mazars-logo.png";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  auth,
-  logInWithEmailAndPassword,
-  signInWithGoogle ,
-} from "../../firebase-config";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 function Copyright(props) {
   return (
@@ -30,9 +23,9 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      {/* <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "} */}
+      </Link>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -41,20 +34,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login({ title }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/dashboard");
-  }, [user, loading]);
-
+const Register = ({ title }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -79,7 +59,7 @@ export default function Login({ title }) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box
             component="form"
@@ -91,12 +71,10 @@ export default function Login({ title }) {
               margin="normal"
               required
               fullWidth
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              label="E-mail"
-              name="E-mail"
-              autoComplete="E-mail"
+              id="login"
+              label="Login"
+              name="login"
+              autoComplete="login"
               autoFocus
             />
             <TextField
@@ -105,9 +83,8 @@ export default function Login({ title }) {
               fullWidth
               name="password"
               label="Password"
-              value={password}
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -118,26 +95,15 @@ export default function Login({ title }) {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 1 }}
-              onClick={() => logInWithEmailAndPassword(email, password)}
+              sx={{ mt: 3, mb: 2 }}
             >
               {title}
             </Button>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{mb: 2 }}
-              onClick={signInWithGoogle}
-            >
-              Login with Google
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/reset">Forgot password?</Link>
-              </Grid>
+            <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/register">Don't have an account? Register</Link>
+                <Link href="/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
               </Grid>
             </Grid>
           </Box>
@@ -146,4 +112,6 @@ export default function Login({ title }) {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default Register;

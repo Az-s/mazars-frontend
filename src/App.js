@@ -6,6 +6,7 @@ import CalculateEcl from "./containers/CalculateEsl/CalculateEcl";
 import CalculateReg from "./containers/CalculateReg/CalculateReg";
 import Analytics from "./containers/Analytics/Analytics";
 import Navigation from "./components/Navigation/Navigation";
+import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
 
@@ -27,7 +28,8 @@ function App() {
             <Route path="/calculate-ecl" element={<CalculateEcl />} />
             <Route path="/calculate-reg" element={<CalculateReg />} />
             <Route path="/analytics" element={<Analytics />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login title='Войти' />} />
+            <Route path="/register" element={<Register title='Зарегистрироваться' />} />
           </Routes>
         <Footer />
       </BrowserRouter>
