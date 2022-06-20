@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/mazars-logo.png";
-import Logout from "../Logout/Logout";
+import LogoutUser from "../Logout/LogoutUser";
 import PopoverLinks from "../Poporver/PopoverLinks";
 import { Grid } from "@mui/material";
 import "./navigation.css";
@@ -27,7 +27,7 @@ const Navigation = () => {
             <li className="navLink">Analytics</li>
           </Link>
         </ul>
-        <Logout />
+        <LogoutUser />
       </div>
     </div>
   );

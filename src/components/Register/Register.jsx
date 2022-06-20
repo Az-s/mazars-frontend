@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  auth,
+  registerWithEmailAndPassword,
+} from "../../firebase-config";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -23,9 +28,9 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      {/* <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </Link>{" "} */}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -35,10 +40,21 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Register = ({ title }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const register = () => {
+    if (!name) alert("Please enter name");
+    registerWithEmailAndPassword(name, email, password);
   };
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate("/");
+  }, [user, loading]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,28 +79,42 @@ const Register = ({ title }) => {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
+             <TextField
               margin="normal"
               required
               fullWidth
-              id="login"
-              label="Login"
-              name="login"
-              autoComplete="login"
+              type='text'
+              value={name}
+              label="Name"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+              autoComplete="E-mail"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
+              type="text"
+              label="E-mail"
+              name="e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="E-mail"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              value={password}
               name="password"
               label="Password"
               type="password"
-              id="password"
+              onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
             />
             <FormControlLabel
@@ -92,16 +122,16 @@ const Register = ({ title }) => {
               label="Remember me"
             />
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={register}
             >
               {title}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link to="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

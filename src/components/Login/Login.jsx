@@ -52,7 +52,7 @@ export default function Login({ title }) {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/dashboard");
+    if (user) navigate("/");
   }, [user, loading]);
 
   const handleSubmit = (event) => {
@@ -133,9 +133,6 @@ export default function Login({ title }) {
               Login with Google
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link to="/reset">Forgot password?</Link>
-              </Grid>
               <Grid item>
                 <Link to="/register">Don't have an account? Register</Link>
               </Grid>
