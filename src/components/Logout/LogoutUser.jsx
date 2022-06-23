@@ -40,10 +40,10 @@ const LogoutUser = () => {
       alert("An error occured while fetching user data");
     }
   };
-
+ 
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/login");
+    if (!user) return navigate("/");
 
     fetchUserName();
   }, [user, loading]);

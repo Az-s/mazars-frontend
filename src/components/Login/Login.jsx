@@ -52,7 +52,7 @@ export default function Login({ title }) {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/");
+    if (user) navigate("/home");
   }, [user, loading]);
 
   const handleSubmit = (event) => {

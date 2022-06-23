@@ -12,7 +12,7 @@ const Navigation = () => {
       <div className="navContainer">
         <img src={Logo} alt="Mazars" className="navImg" />
         <ul className="navItems">
-          <Link to="/">
+          <Link to="/home">
             <li className="navLink">Home</li>
           </Link>
           <Grid item sx={{listStyleType: 'none', fontSize: '18px' , cursor: 'pointer'}}>
